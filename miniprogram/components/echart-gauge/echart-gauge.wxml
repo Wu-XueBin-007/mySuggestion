@@ -1,0 +1,5 @@
+<!--components/echart-gauge/echart-gauge.wxml-->
+ <view class="echart-gauge-page">
+  <ec-canvas id="mychart-dom-gauge" canvas-id="mychart-gauge" ec="{{ec}}"></ec-canvas>
+
+</view>

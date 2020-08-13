@@ -1,0 +1,4 @@
+<!--miniprogram/pages/historys/codePage/codePage.wxml-->
+<view style="text-align:center;margin-top: 30px;">
+<van-image width='300' height='300' bind:click='previewImage' src="{{codePageId}}" />
+</view>

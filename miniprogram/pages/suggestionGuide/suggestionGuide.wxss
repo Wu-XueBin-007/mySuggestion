@@ -1,0 +1,43 @@
+/* miniprogram/pages/suggestionGuide/suggestionGuide.wxss */
+
+.race-header{
+  padding: 10px;
+  font-size: 20px;
+}
+.race-home-panel{
+  margin-top: 10px;
+}
+.race-header-left{
+ padding: 10px;
+}
+.race-header-right{
+  float: right;
+  font-size: 15px;
+
+}
+.race-item{
+   margin:10px 10px 20px 10px;
+   line-height: 25px;
+}
+.race-item-self{
+  display: flex;
+  align-items: center;
+}
+.race-item-roles{
+   margin:10px 10px 5px 20px;
+}
+.race-item text{
+   font-size: 15px;
+   padding: 10px;
+  
+}
+.race-content{
+ padding: 10px;
+}
+
+.race-footer{
+padding: 10px;
+}
+.suggestion-image{
+  text-align: center;
+}

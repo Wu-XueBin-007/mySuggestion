@@ -1,0 +1,27 @@
+<!--miniprogram/pages/addSuggestion/addSuggestion.wxml-->
+<!--miniprogram/pages/suggestion/suggestion.wxml-->
+<view class='suggestion-page'>
+<van-panel  custom-class="race-panel" title="意见描述" >
+ <van-field custom-style="min-height: 150px;z-index:0;" input-class="input-content"
+    value="{{boxComment}}"
+    type="textarea"
+    placeholder="内容"
+    autosize="{minHeight: 150, maxHeight: 300}"
+    border="{{false}}"
+    bind:input="onBoxCommentInput"
+  />
+</van-panel>
+<van-panel >
+  <van-cell-group>
+  <van-cell title="上传图片"  />
+  <view class="suggestion-image">
+     <van-uploader file-list="{{ fileList }}" max-count="5" deletable="{{true}}"  bind:delete="deleteImage"  bind:after-read="afterRead" />
+  </view>
+</van-cell-group>
+</van-panel>
+<view class="submit-btn">
+<van-button wx:if="{{isSave}}" type="primary" size="large" custom-style="width:100%;height:100%;border:none;" bind:click="onSubmitSuggestion" color="linear-gradient(to right, #4bb0ff, #6149f6)">提交</van-button>
+<van-button wx:if="{{!isSave}}" type="primary" size="large" custom-style="width:100%;height:100%;border:none;" color="linear-gradient(to right, #4bb0ff, #6149f6)" loading loading-text="保存中"></van-button>
+</view>
+</view>
+

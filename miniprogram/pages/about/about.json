@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#506799",
+  "navigationBarTitleText": "版本信息",
+  "usingComponents": {
+    "van-steps": "@vant/weapp/steps/index",
+     "van-image": "@vant/weapp/image/index"
+  }
+}

@@ -1,0 +1,31 @@
+<!--logs.wxml-->
+<view>
+<view class="user-row">使用教程</view>
+<van-collapse value="{{ activeNames }}" bind:change="onChange">
+  <van-collapse-item title="如何创建意见箱" name="1" content-class='item-style'>
+  <text class="font-style">
+  1. 进入小程序页面，点击个人中心Tab 页，进入个人中心页面；
+  2. 点击登录按钮，进行授权登录
+  3. 点击创建意见箱条目，进入意见箱设置页面
+  4. 输入意见箱名称，上传意见箱封面
+  5. 点击创建意见箱按钮，即创建成功。
+  </text>
+  </van-collapse-item>
+  <van-collapse-item title="如何添加意见" name="2">
+   <text class="font-style">
+  1. 进入小程序页面，点击首页Tab 进入首页，粘贴或输入意见箱码
+  2.点击意见箱入口按钮，进入意见箱
+  3. 点击‘我要提意见’按钮进入提意见页面
+  4.输入意见信息，上传相关图片，点击提交按钮即可
+   </text>
+  </van-collapse-item>
+   <van-collapse-item title="如何管理意见箱" name="3">
+   <text class="font-style">
+  1. 进入小程序页面，点击个人中心Tab 进入个人中心页面
+  2. 点击我的意见箱，进入意见箱管理页面
+  3. 意见箱管理页面提供四个功能，查看意见箱码，查看意见信息，修改意见箱设置信息，删除意见箱
+  4.点击查收意见按钮，即可查看收集的意见详细信息
+   </text>
+  </van-collapse-item>
+</van-collapse>
+</view>

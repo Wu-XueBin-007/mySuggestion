@@ -1,0 +1,15 @@
+{
+  "navigationBarBackgroundColor": "#506799",
+  "navigationBarTitleText": "记录详情",
+    "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "van-panel": "@vant/weapp/panel/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-divider": "@vant/weapp/divider/index",
+    "van-dialog": "@vant/weapp/dialog/index"
+  }
+}

@@ -1,0 +1,7 @@
+{
+    "navigationBarBackgroundColor": "#506799",
+    "navigationBarTitleText": "海报",
+    "usingComponents": {
+      "van-image": "@vant/weapp/image/index"
+    }
+}

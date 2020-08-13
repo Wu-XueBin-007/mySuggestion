@@ -1,0 +1,42 @@
+<!--miniprogram/pages/historys/historys.wxml-->
+<!--miniprogram/pages/historys/historys.wxml-->
+<view class="historys-page">
+<block wx:for="{{historys}}" wx:key="index"> 
+<van-panel title="意见箱: {{item.boxName}}" use-footer-slot footer-class="historys-item-footer" custom-class="historys-panel"  status="{{item.createDate}}">
+<view class="item-info" data-item="{{item}}">
+ <view class="item-text">
+  <view class="view-item">说明: {{item.boxComment}}</view>
+     <view class="view-item invite-code" >
+     <text>意见箱码：{{item.suggestionCode}} </text>
+     <button size="mini" catchtap="onClickCode" data-code="{{item.suggestionCode}}" style="margin-left: 10px">复制</button>
+     </view>
+     <view class="view-item invite-code">
+      <text>意见箱海报：</text>
+    <button wx:if="{{item.codePageId}}" size="mini" catchtap="onCheckCodePage" data-codePage="{{item.codePageId}}"  style="margin-left: 10px">查看海报</button>
+    <button wx:if="{{!item.codePageId}}"  size="mini" catchtap="onCheckCodePage" data-code="{{item.suggestionCode}}"  data-id="{{item._id}}" style="margin-left: 10px">生成海报</button>
+    </view>
+</view>
+  <view class="item-image">
+  <van-image width="60"  height="60" src="{{item.fileList[0].url}}" />
+  </view>
+ 
+  </view>
+  <view slot="footer">
+   <van-button size="small" bindtap="checkSuggestions" data-id="{{item._id}}"  style="margin-left: 15px;">查收意见</van-button>
+    <van-button size="small" bindtap="onPanelClick" data-id="{{item._id}}"  style="margin-left: 15px;">修改</van-button>
+  
+    <van-button size="small"  style="margin-left: 15px;float:right;" bindtap="deleteHistory" data-id="{{item._id}}">删除</van-button>
+  </view>
+</van-panel>
+
+</block>
+
+<movable-area class="historys-area">
+<movable-view class="historys-move-view" direction="all">
+<image class="historys-move-image" mode="aspectFill" src="/images/addRaces.svg" bindtap="addBox"/>
+</movable-view>
+</movable-area>
+
+<van-dialog id="van-dialog" />
+</view>
+

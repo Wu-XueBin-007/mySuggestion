@@ -1,0 +1,59 @@
+/* miniprogram/pages/historys/historys.wxss */
+/* miniprogram/pages/historys/historys.wxss */
+.historys-page{
+  height: 100%;
+  width: 100%;
+}
+.historys-item-footer{
+  text-align:right;
+}
+.historys-panel{
+  margin-top: 10px;
+}
+
+.historys-area{
+  height: 100%;
+  width: 100%;
+  position:fixed;
+  pointer-events:none;
+  bottom:0;
+}
+  .historys-move-view {
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+    top:80%;
+    left: 80%;
+  }
+  .historys-move-image{
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+
+  }
+  .view-item{
+    margin: 5px;
+  }
+  .invite-code{
+    display: flex;
+    align-items: center;
+
+  }
+  .item-info{
+    display: flex;
+    align-items: center;
+  }
+  .item-text{
+  margin: 10px;
+  flex-grow: 1;
+
+  }
+  .item-image{
+    margin-right: 30px;
+    margin:10px;
+  }
+    .invite-code{
+    display: flex;
+    align-items: center;
+
+  }

@@ -1,0 +1,23 @@
+/* miniprogram/pages/suggestionComment/suggestionComment.wxss */
+.item-view{
+margin: 20px;
+font-size: 15px;
+}
+.comment-panel{
+  margin-top:10px;
+}
+.comment-header{
+  padding: 10px;
+  font-size: 15px;
+}
+.comment-header-left{
+ padding: 10px;
+}
+.comment-header-right{
+  float: right;
+  font-size: 15px;
+
+}
+.image-item{
+ margin:10px;
+}

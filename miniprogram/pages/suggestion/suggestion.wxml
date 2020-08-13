@@ -1,0 +1,39 @@
+<!--miniprogram/pages/suggestion/suggestion.wxml-->
+<view class='suggestion-page'>
+<van-panel title="基本信息设定">
+  <van-cell-group>
+  <van-field
+    value="{{boxName}}"
+    required
+    clearable
+    label="意见箱名称"
+    icon="question-o"
+    placeholder="请输入名称"
+    bind:input="onBoxInput"
+  />
+  <van-cell title="意见箱封面"  />
+  <view class="suggestion-image">
+     <van-uploader file-list="{{ fileList }}" max-count="1" deletable="{{true}}"  bind:delete="deleteImage"  bind:after-read="afterRead" />
+  </view>
+ 
+ 
+</van-cell-group>
+</van-panel>
+
+<view hidden="{{showRaceDes}}">
+<van-panel  custom-class="race-panel" title="意见箱描述" >
+ <van-field custom-style="min-height: 150px;z-index:0;" 
+    value="{{boxComment}}"
+    type="textarea"
+    placeholder="内容"
+    autosize="{minHeight: 150, maxHeight: 300}"
+    border="{{false}}"
+    bind:input="onBoxCommentInput"
+  />
+</van-panel>
+</view>
+<view class="submit-btn">
+<van-button wx:if="{{isSave}}" type="primary" size="large" custom-style="width:100%;height:100%;background-color: #506799;border:none;" color="linear-gradient(to right, #4bb0ff, #6149f6)" bind:click="addSuggestionToCloud">{{boxActionName}}</van-button>
+<van-button wx:if="{{!isSave}}" type="primary" size="large" custom-style="width:100%;height:100%;border:none;" color="linear-gradient(to right, #4bb0ff, #6149f6)" loading loading-text="保存中"></van-button>
+</view>
+</view>

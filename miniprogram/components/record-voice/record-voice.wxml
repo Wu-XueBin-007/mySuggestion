@@ -1,0 +1,20 @@
+<!--components/record-voice/record-voice.wxml-->
+ <view class='record-voice-animation'>
+      <view class='voice-animation'>
+        <view class='icon iconfont icon-microphone'></view>
+        <view class='voice-animation_content'>
+          <view class='voice-animation_cover'></view>
+          <view class='voice-animation_line'>
+               <block wx:for="{{[1,2,3,4,5,6,7,8]}}" wx:key="index" >
+               <view></view>
+               </block>
+                
+          
+          </view>
+        </view>
+      </view>
+      <view class='voice-describe'>
+        <view class='icon iconfont icon-rollback'></view>
+        正在录音
+      </view>
+    </view>

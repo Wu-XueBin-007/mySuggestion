@@ -1,0 +1,26 @@
+<!--index.wxml-->
+<view class="container">
+<view class="promise">
+
+<text class="promise-title">以客户为中心，以奋斗者为本，以创新为动力</text>
+<view animation="{{animal}}"><text class="promise-title" >主动 务实 高效 精准 创新</text></view>
+</view>
+<view class="function-btn">
+
+  <van-field size="large"
+    title-width="100px"
+    value="{{invitedCode}}"
+    center
+    clearable
+    label="意见箱进入码"
+    placeholder="请输入意见箱进入码"
+    border="{{true}}"
+    bind:change="onCodeChange"
+  >
+  </van-field>
+
+<view class="submit-btn">
+<van-button type="primary" size="large" custom-style="width:100%;height:100%;background-color: #506799;border:none;" color="linear-gradient(to right, #4bb0ff, #506799)" bind:click="beginToScore">意见箱入口</van-button>
+</view>
+</view>
+</view>

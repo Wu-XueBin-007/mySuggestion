@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "",
+  "navigationStyle": "custom",
+  "usingComponents": {
+      "van-panel": "@vant/weapp/panel/index",
+      "van-field": "@vant/weapp/field/index",
+      "van-cell-group": "@vant/weapp/cell-group/index",
+      "van-cell": "@vant/weapp/cell/index"
+  }
+}

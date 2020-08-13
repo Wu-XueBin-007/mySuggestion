@@ -1,0 +1,12 @@
+{
+  "navigationBarBackgroundColor": "#506799",
+  "navigationBarTitleText": "填写意见",
+  "usingComponents": {
+    "van-panel": "@vant/weapp/panel/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-button": "@vant/weapp/button/index"
+  }
+}

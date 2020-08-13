@@ -1,0 +1,17 @@
+/* miniprogram/pages/suggestion/suggestion.wxss */
+
+
+.race-panel{
+  margin-top: 30px;
+}
+.submit-btn{
+  margin-top: 20px;
+  height: 35px;
+ margin: 16px;
+
+}
+.suggestion-image{
+  text-align: center;
+  margin:10px;
+
+}

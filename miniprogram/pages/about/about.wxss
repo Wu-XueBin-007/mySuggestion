@@ -1,0 +1,12 @@
+/* pages/about/about.wxss */
+.about-row{
+  height: 150px;
+  width: 100%;
+  text-align: center
+}
+.icon-about{
+  margin-top: 15px;
+}
+.step-row{
+  margin: 15px;
+}

@@ -1,0 +1,19 @@
+<!--pages/about/about.wxml-->
+<view>
+<view class='about-row'>
+<van-image custom-class="icon-about"
+  round
+  width="100px"
+  height="100px"
+  src="/images/goal.png"
+/>
+<view class='icon-text'>{{version}}</view>
+</view>
+
+<van-steps custom-class='step-row'
+  steps="{{ steps }}"
+  active="{{ active }}"
+  direction="vertical"
+  active-color="#506799"
+/>
+</view>

@@ -1,0 +1,14 @@
+<!--miniprogram/pages/personal/personal.wxml-->
+<view class="personal-page">
+<view class="personal-head">
+<image class="personal-image" mode="aspectFill" src="{{avatarUrl}}"/>
+<button class="personal-login" plain bindgetuserinfo="onGetUserInfo" open-type="getUserInfo"><text class="personal-text">{{userName}}</text></button>
+</view>
+<view class="personal-body">
+<van-panel custom-class="personal-panel">
+<van-cell title = "创建意见箱" is-link clickable bind:click="createHistory" />
+<van-cell title = "我的意见箱" is-link clickable bind:click="getHistory" />
+ <van-cell title="使用教程" is-link link-type="navigateTo" url="/pages/userBook/userBook" />
+  <van-cell title="关于" is-link link-type="navigateTo" url="/pages/about/about" />
+</van-panel></view>
+</view>

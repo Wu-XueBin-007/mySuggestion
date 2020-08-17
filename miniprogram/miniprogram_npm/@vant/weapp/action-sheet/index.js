@@ -1,10 +1,8 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-var component_1 = require('../common/component');
-var button_1 = require('../mixins/button');
-var open_type_1 = require('../mixins/open-type');
-component_1.VantComponent({
-  mixins: [button_1.button, open_type_1.openType],
+import { VantComponent } from '../common/component';
+import { button } from '../mixins/button';
+import { openType } from '../mixins/open-type';
+VantComponent({
+  mixins: [button, openType],
   props: {
     show: Boolean,
     title: String,
@@ -40,9 +38,9 @@ component_1.VantComponent({
     },
   },
   methods: {
-    onSelect: function (event) {
-      var index = event.currentTarget.dataset.index;
-      var item = this.data.actions[index];
+    onSelect(event) {
+      const { index } = event.currentTarget.dataset;
+      const item = this.data.actions[index];
       if (item && !item.disabled && !item.loading) {
         this.$emit('select', item);
         if (this.data.closeOnClickAction) {
@@ -50,13 +48,13 @@ component_1.VantComponent({
         }
       }
     },
-    onCancel: function () {
+    onCancel() {
       this.$emit('cancel');
     },
-    onClose: function () {
+    onClose() {
       this.$emit('close');
     },
-    onClickOverlay: function () {
+    onClickOverlay() {
       this.$emit('click-overlay');
       this.onClose();
     },

@@ -1,17 +1,12 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-var component_1 = require('../common/component');
-var FONT_COLOR = '#ed6a0c';
-var BG_COLOR = '#fffbe8';
-component_1.VantComponent({
+import { VantComponent } from '../common/component';
+VantComponent({
   props: {
     text: {
       type: String,
       value: '',
-      observer: function () {
-        var _this = this;
-        wx.nextTick(function () {
-          _this.init();
+      observer() {
+        wx.nextTick(() => {
+          this.init();
         });
       },
     },
@@ -34,10 +29,9 @@ component_1.VantComponent({
     speed: {
       type: Number,
       value: 50,
-      observer: function () {
-        var _this = this;
-        wx.nextTick(function () {
-          _this.init();
+      observer() {
+        wx.nextTick(() => {
+          this.init();
         });
       },
     },
@@ -49,37 +43,30 @@ component_1.VantComponent({
       type: String,
       value: '',
     },
-    color: {
-      type: String,
-      value: FONT_COLOR,
-    },
-    backgroundColor: {
-      type: String,
-      value: BG_COLOR,
-    },
+    color: String,
+    backgroundColor: String,
+    background: String,
     wrapable: Boolean,
   },
   data: {
     show: true,
   },
-  created: function () {
+  created() {
     this.resetAnimation = wx.createAnimation({
       duration: 0,
       timingFunction: 'linear',
     });
   },
-  destroyed: function () {
+  destroyed() {
     this.timer && clearTimeout(this.timer);
   },
   methods: {
-    init: function () {
-      var _this = this;
+    init() {
       Promise.all([
         this.getRect('.van-notice-bar__content'),
         this.getRect('.van-notice-bar__wrap'),
-      ]).then(function (rects) {
-        var contentRect = rects[0],
-          wrapRect = rects[1];
+      ]).then((rects) => {
+        const [contentRect, wrapRect] = rects;
         if (
           contentRect == null ||
           wrapRect == null ||
@@ -88,26 +75,22 @@ component_1.VantComponent({
         ) {
           return;
         }
-        var _a = _this.data,
-          speed = _a.speed,
-          scrollable = _a.scrollable,
-          delay = _a.delay;
+        const { speed, scrollable, delay } = this.data;
         if (scrollable && wrapRect.width < contentRect.width) {
-          var duration = (contentRect.width / speed) * 1000;
-          _this.wrapWidth = wrapRect.width;
-          _this.contentWidth = contentRect.width;
-          _this.duration = duration;
-          _this.animation = wx.createAnimation({
-            duration: duration,
+          const duration = (contentRect.width / speed) * 1000;
+          this.wrapWidth = wrapRect.width;
+          this.contentWidth = contentRect.width;
+          this.duration = duration;
+          this.animation = wx.createAnimation({
+            duration,
             timingFunction: 'linear',
-            delay: delay,
+            delay,
           });
-          _this.scroll();
+          this.scroll();
         }
       });
     },
-    scroll: function () {
-      var _this = this;
+    scroll() {
       this.timer && clearTimeout(this.timer);
       this.timer = null;
       this.setData({
@@ -116,24 +99,27 @@ component_1.VantComponent({
           .step()
           .export(),
       });
-      setTimeout(function () {
-        _this.setData({
-          animationData: _this.animation
-            .translateX(-_this.contentWidth)
+      setTimeout(() => {
+        this.setData({
+          animationData: this.animation
+            .translateX(-this.contentWidth)
             .step()
             .export(),
         });
       }, 20);
-      this.timer = setTimeout(function () {
-        _this.scroll();
+      this.timer = setTimeout(() => {
+        this.scroll();
       }, this.duration);
     },
-    onClickIcon: function () {
-      this.timer && clearTimeout(this.timer);
-      this.timer = null;
-      this.setData({ show: false });
+    onClickIcon(event) {
+      if (this.data.mode === 'closeable') {
+        this.timer && clearTimeout(this.timer);
+        this.timer = null;
+        this.setData({ show: false });
+        this.$emit('close', event.detail);
+      }
     },
-    onClick: function (event) {
+    onClick(event) {
       this.$emit('click', event);
     },
   },

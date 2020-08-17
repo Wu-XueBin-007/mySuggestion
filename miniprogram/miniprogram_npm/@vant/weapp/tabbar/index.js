@@ -1,16 +1,14 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-var component_1 = require('../common/component');
-component_1.VantComponent({
+import { VantComponent } from '../common/component';
+VantComponent({
   relation: {
     name: 'tabbar-item',
     type: 'descendant',
     current: 'tabbar',
-    linked: function (target) {
+    linked(target) {
       target.parent = this;
       target.updateFromParent();
     },
-    unlinked: function () {
+    unlinked() {
       this.updateChildren();
     },
   },
@@ -45,20 +43,16 @@ component_1.VantComponent({
     },
   },
   methods: {
-    updateChildren: function () {
-      var children = this.children;
+    updateChildren() {
+      const { children } = this;
       if (!Array.isArray(children) || !children.length) {
         return Promise.resolve();
       }
-      return Promise.all(
-        children.map(function (child) {
-          return child.updateFromParent();
-        })
-      );
+      return Promise.all(children.map((child) => child.updateFromParent()));
     },
-    onChange: function (child) {
-      var index = this.children.indexOf(child);
-      var active = child.data.name || index;
+    onChange(child) {
+      const index = this.children.indexOf(child);
+      const active = child.data.name || index;
       if (active !== this.data.active) {
         this.$emit('change', active);
       }

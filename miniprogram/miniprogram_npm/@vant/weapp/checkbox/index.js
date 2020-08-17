@@ -1,11 +1,9 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-var component_1 = require('../common/component');
+import { VantComponent } from '../common/component';
 function emit(target, value) {
   target.$emit('input', value);
   target.$emit('change', value);
 }
-component_1.VantComponent({
+VantComponent({
   field: true,
   relation: {
     name: 'checkbox-group',
@@ -33,36 +31,29 @@ component_1.VantComponent({
     parentDisabled: false,
   },
   methods: {
-    emitChange: function (value) {
+    emitChange(value) {
       if (this.parent) {
         this.setParentValue(this.parent, value);
       } else {
         emit(this, value);
       }
     },
-    toggle: function () {
-      var _a = this.data,
-        parentDisabled = _a.parentDisabled,
-        disabled = _a.disabled,
-        value = _a.value;
+    toggle() {
+      const { parentDisabled, disabled, value } = this.data;
       if (!disabled && !parentDisabled) {
         this.emitChange(!value);
       }
     },
-    onClickLabel: function () {
-      var _a = this.data,
-        labelDisabled = _a.labelDisabled,
-        parentDisabled = _a.parentDisabled,
-        disabled = _a.disabled,
-        value = _a.value;
+    onClickLabel() {
+      const { labelDisabled, parentDisabled, disabled, value } = this.data;
       if (!disabled && !labelDisabled && !parentDisabled) {
         this.emitChange(!value);
       }
     },
-    setParentValue: function (parent, value) {
-      var parentValue = parent.data.value.slice();
-      var name = this.data.name;
-      var max = parent.data.max;
+    setParentValue(parent, value) {
+      const parentValue = parent.data.value.slice();
+      const { name } = this.data;
+      const { max } = parent.data;
       if (value) {
         if (max && parentValue.length >= max) {
           return;
@@ -72,7 +63,7 @@ component_1.VantComponent({
           emit(parent, parentValue);
         }
       } else {
-        var index = parentValue.indexOf(name);
+        const index = parentValue.indexOf(name);
         if (index !== -1) {
           parentValue.splice(index, 1);
           emit(parent, parentValue);

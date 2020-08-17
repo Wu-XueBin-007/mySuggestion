@@ -1,16 +1,14 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-var component_1 = require('../common/component');
-var color_1 = require('../common/color');
-component_1.VantComponent({
+import { VantComponent } from '../common/component';
+import { BLUE, GRAY_DARK } from '../common/color';
+VantComponent({
   field: true,
   classes: ['node-class'],
   props: {
     checked: {
       type: null,
-      observer: function (value) {
-        var loadingColor = this.getLoadingColor(value);
-        this.setData({ value: value, loadingColor: loadingColor });
+      observer(value) {
+        const loadingColor = this.getLoadingColor(value);
+        this.setData({ value, loadingColor });
       },
     },
     loading: Boolean,
@@ -30,27 +28,21 @@ component_1.VantComponent({
       value: false,
     },
   },
-  created: function () {
-    var value = this.data.checked;
-    var loadingColor = this.getLoadingColor(value);
-    this.setData({ value: value, loadingColor: loadingColor });
+  created() {
+    const { checked: value } = this.data;
+    const loadingColor = this.getLoadingColor(value);
+    this.setData({ value, loadingColor });
   },
   methods: {
-    getLoadingColor: function (checked) {
-      var _a = this.data,
-        activeColor = _a.activeColor,
-        inactiveColor = _a.inactiveColor;
-      return checked
-        ? activeColor || color_1.BLUE
-        : inactiveColor || color_1.GRAY_DARK;
+    getLoadingColor(checked) {
+      const { activeColor, inactiveColor } = this.data;
+      return checked ? activeColor || BLUE : inactiveColor || GRAY_DARK;
     },
-    onClick: function () {
-      var _a = this.data,
-        activeValue = _a.activeValue,
-        inactiveValue = _a.inactiveValue;
+    onClick() {
+      const { activeValue, inactiveValue } = this.data;
       if (!this.data.disabled && !this.data.loading) {
-        var checked = this.data.checked === activeValue;
-        var value = checked ? inactiveValue : activeValue;
+        const checked = this.data.checked === activeValue;
+        const value = checked ? inactiveValue : activeValue;
         this.$emit('input', value);
         this.$emit('change', value);
       }

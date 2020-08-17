@@ -1,20 +1,22 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-var component_1 = require('../common/component');
-var button_1 = require('../mixins/button');
-var open_type_1 = require('../mixins/open-type');
-var color_1 = require('../common/color');
-component_1.VantComponent({
-  mixins: [button_1.button, open_type_1.openType],
+import { VantComponent } from '../common/component';
+import { button } from '../mixins/button';
+import { openType } from '../mixins/open-type';
+import { GRAY, RED } from '../common/color';
+VantComponent({
+  mixins: [button, openType],
   props: {
     show: {
       type: Boolean,
-      observer: function (show) {
+      observer(show) {
         !show && this.stopLoading();
       },
     },
     title: String,
     message: String,
+    theme: {
+      type: String,
+      value: 'default',
+    },
     useSlot: Boolean,
     className: String,
     customStyle: String,
@@ -40,11 +42,11 @@ component_1.VantComponent({
     },
     confirmButtonColor: {
       type: String,
-      value: color_1.BLUE,
+      value: RED,
     },
     cancelButtonColor: {
       type: String,
-      value: color_1.GRAY,
+      value: GRAY,
     },
     showConfirmButton: {
       type: Boolean,
@@ -66,28 +68,29 @@ component_1.VantComponent({
     },
   },
   methods: {
-    onConfirm: function () {
+    onConfirm() {
       this.handleAction('confirm');
     },
-    onCancel: function () {
+    onCancel() {
       this.handleAction('cancel');
     },
-    onClickOverlay: function () {
+    onClickOverlay() {
       this.onClose('overlay');
     },
-    handleAction: function (action) {
-      var _a;
+    handleAction(action) {
       if (this.data.asyncClose) {
-        this.setData(((_a = {}), (_a['loading.' + action] = true), _a));
+        this.setData({
+          [`loading.${action}`]: true,
+        });
       }
       this.onClose(action);
     },
-    close: function () {
+    close() {
       this.setData({
         show: false,
       });
     },
-    stopLoading: function () {
+    stopLoading() {
       this.setData({
         loading: {
           confirm: false,
@@ -95,14 +98,16 @@ component_1.VantComponent({
         },
       });
     },
-    onClose: function (action) {
+    onClose(action) {
       if (!this.data.asyncClose) {
         this.close();
       }
       this.$emit('close', action);
       // 把 dialog 实例传递出去，可以通过 stopLoading() 在外部关闭按钮的 loading
       this.$emit(action, { dialog: this });
-      var callback = this.data[action === 'confirm' ? 'onConfirm' : 'onCancel'];
+      const callback = this.data[
+        action === 'confirm' ? 'onConfirm' : 'onCancel'
+      ];
       if (callback) {
         callback(this);
       }

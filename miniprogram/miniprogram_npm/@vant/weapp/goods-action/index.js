@@ -1,18 +1,16 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-var component_1 = require('../common/component');
-component_1.VantComponent({
+import { VantComponent } from '../common/component';
+VantComponent({
   relation: {
     type: 'descendant',
     name: 'goods-action-button',
     current: 'goods-action',
-    linked: function () {
+    linked() {
       this.updateStyle();
     },
-    unlinked: function () {
+    unlinked() {
       this.updateStyle();
     },
-    linkChanged: function () {
+    linkChanged() {
       this.updateStyle();
     },
   },
@@ -23,10 +21,9 @@ component_1.VantComponent({
     },
   },
   methods: {
-    updateStyle: function () {
-      var _this = this;
-      wx.nextTick(function () {
-        _this.children.forEach(function (child) {
+    updateStyle() {
+      wx.nextTick(() => {
+        this.children.forEach((child) => {
           child.updateStyle();
         });
       });

@@ -1,7 +1,5 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-var component_1 = require('../common/component');
-component_1.VantComponent({
+import { VantComponent } from '../common/component';
+VantComponent({
   relation: {
     name: 'collapse-item',
     type: 'descendant',
@@ -22,22 +20,18 @@ component_1.VantComponent({
     },
   },
   methods: {
-    updateExpanded: function () {
-      this.children.forEach(function (child) {
+    updateExpanded() {
+      this.children.forEach((child) => {
         child.updateExpanded();
       });
     },
-    switch: function (name, expanded) {
-      var _a = this.data,
-        accordion = _a.accordion,
-        value = _a.value;
-      var changeItem = name;
+    switch(name, expanded) {
+      const { accordion, value } = this.data;
+      const changeItem = name;
       if (!accordion) {
         name = expanded
           ? (value || []).concat(name)
-          : (value || []).filter(function (activeName) {
-              return activeName !== name;
-            });
+          : (value || []).filter((activeName) => activeName !== name);
       } else {
         name = expanded ? name : '';
       }

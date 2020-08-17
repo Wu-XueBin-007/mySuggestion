@@ -1,13 +1,11 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-var component_1 = require('../common/component');
-component_1.VantComponent({
+import { VantComponent } from '../common/component';
+VantComponent({
   field: true,
   relation: {
     name: 'checkbox',
     type: 'descendant',
     current: 'checkbox-group',
-    linked: function (target) {
+    linked(target) {
       this.updateChild(target);
     },
   },
@@ -23,16 +21,11 @@ component_1.VantComponent({
     },
   },
   methods: {
-    updateChildren: function () {
-      var _this = this;
-      (this.children || []).forEach(function (child) {
-        return _this.updateChild(child);
-      });
+    updateChildren() {
+      (this.children || []).forEach((child) => this.updateChild(child));
     },
-    updateChild: function (child) {
-      var _a = this.data,
-        value = _a.value,
-        disabled = _a.disabled;
+    updateChild(child) {
+      const { value, disabled } = this.data;
       child.setData({
         value: value.indexOf(child.data.name) !== -1,
         parentDisabled: disabled,

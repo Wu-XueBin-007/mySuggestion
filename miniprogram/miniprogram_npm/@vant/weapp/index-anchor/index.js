@@ -1,7 +1,5 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-var component_1 = require('../common/component');
-component_1.VantComponent({
+import { VantComponent } from '../common/component';
+VantComponent({
   relation: {
     name: 'index-bar',
     type: 'ancestor',
@@ -17,16 +15,15 @@ component_1.VantComponent({
     anchorStyle: '',
   },
   methods: {
-    scrollIntoView: function (scrollTop) {
-      var _this = this;
-      this.getBoundingClientRect().then(function (rect) {
+    scrollIntoView(scrollTop) {
+      this.getBoundingClientRect().then((rect) => {
         wx.pageScrollTo({
           duration: 0,
-          scrollTop: scrollTop + rect.top - _this.parent.data.stickyOffsetTop,
+          scrollTop: scrollTop + rect.top - this.parent.data.stickyOffsetTop,
         });
       });
     },
-    getBoundingClientRect: function () {
+    getBoundingClientRect() {
       return this.getRect('.van-index-anchor-wrapper');
     },
   },

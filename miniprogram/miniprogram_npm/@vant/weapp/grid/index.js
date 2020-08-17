@@ -1,8 +1,6 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-var component_1 = require('../common/component');
-var utils_1 = require('../common/utils');
-component_1.VantComponent({
+import { VantComponent } from '../common/component';
+import { addUnit } from '../common/utils';
+VantComponent({
   relation: {
     name: 'grid-item',
     type: 'descendant',
@@ -49,17 +47,17 @@ component_1.VantComponent({
   data: {
     viewStyle: '',
   },
-  created: function () {
-    var gutter = this.data.gutter;
+  created() {
+    const { gutter } = this.data;
     if (gutter) {
       this.setData({
-        viewStyle: 'padding-left: ' + utils_1.addUnit(gutter),
+        viewStyle: `padding-left: ${addUnit(gutter)}`,
       });
     }
   },
   methods: {
-    updateChildren: function () {
-      this.children.forEach(function (child) {
+    updateChildren() {
+      this.children.forEach((child) => {
         child.updateStyle();
       });
     },

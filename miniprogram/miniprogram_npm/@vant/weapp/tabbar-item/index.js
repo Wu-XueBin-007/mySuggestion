@@ -1,7 +1,5 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-var component_1 = require('../common/component');
-component_1.VantComponent({
+import { VantComponent } from '../common/component';
+VantComponent({
   props: {
     info: null,
     name: null,
@@ -17,22 +15,22 @@ component_1.VantComponent({
     active: false,
   },
   methods: {
-    onClick: function () {
+    onClick() {
       if (this.parent) {
         this.parent.onChange(this);
       }
       this.$emit('click');
     },
-    updateFromParent: function () {
-      var parent = this.parent;
+    updateFromParent() {
+      const { parent } = this;
       if (!parent) {
         return;
       }
-      var index = parent.children.indexOf(this);
-      var parentData = parent.data;
-      var data = this.data;
-      var active = (data.name || index) === parentData.active;
-      var patch = {};
+      const index = parent.children.indexOf(this);
+      const parentData = parent.data;
+      const { data } = this;
+      const active = (data.name || index) === parentData.active;
+      const patch = {};
       if (active !== data.active) {
         patch.active = active;
       }

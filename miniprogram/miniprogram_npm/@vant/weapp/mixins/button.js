@@ -1,7 +1,4 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-exports.button = void 0;
-exports.button = Behavior({
+export const button = Behavior({
   externalClasses: ['hover-class'],
   properties: {
     id: String,

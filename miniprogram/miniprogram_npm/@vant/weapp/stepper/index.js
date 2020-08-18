@@ -1,22 +1,39 @@
-import { VantComponent } from '../common/component';
-import { isDef } from '../common/utils';
-const LONG_PRESS_START_TIME = 600;
-const LONG_PRESS_INTERVAL = 200;
+'use strict';
+var __assign =
+  (this && this.__assign) ||
+  function () {
+    __assign =
+      Object.assign ||
+      function (t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+          s = arguments[i];
+          for (var p in s)
+            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+      };
+    return __assign.apply(this, arguments);
+  };
+Object.defineProperty(exports, '__esModule', { value: true });
+var component_1 = require('../common/component');
+var utils_1 = require('../common/utils');
+var LONG_PRESS_START_TIME = 600;
+var LONG_PRESS_INTERVAL = 200;
 // add num and avoid float number
 function add(num1, num2) {
-  const cardinal = Math.pow(10, 10);
+  var cardinal = Math.pow(10, 10);
   return Math.round((num1 + num2) * cardinal) / cardinal;
 }
 function equal(value1, value2) {
   return String(value1) === String(value2);
 }
-VantComponent({
+component_1.VantComponent({
   field: true,
   classes: ['input-class', 'plus-class', 'minus-class'],
   props: {
     value: {
       type: null,
-      observer(value) {
+      observer: function (value) {
         if (!equal(value, this.data.currentValue)) {
           this.setData({ currentValue: this.format(value) });
         }
@@ -68,19 +85,19 @@ VantComponent({
   data: {
     currentValue: '',
   },
-  created() {
+  created: function () {
     this.setData({
       currentValue: this.format(this.data.value),
     });
   },
   methods: {
-    check() {
-      const val = this.format(this.data.currentValue);
+    check: function () {
+      var val = this.format(this.data.currentValue);
       if (!equal(val, this.data.currentValue)) {
         this.setData({ currentValue: val });
       }
     },
-    isDisabled(type) {
+    isDisabled: function (type) {
       if (type === 'plus') {
         return (
           this.data.disabled ||
@@ -94,19 +111,19 @@ VantComponent({
         this.data.currentValue <= this.data.min
       );
     },
-    onFocus(event) {
+    onFocus: function (event) {
       this.$emit('focus', event.detail);
     },
-    onBlur(event) {
-      const value = this.format(event.detail.value);
+    onBlur: function (event) {
+      var value = this.format(event.detail.value);
       this.emitChange(value);
       this.$emit(
         'blur',
-        Object.assign(Object.assign({}, event.detail), { value })
+        __assign(__assign({}, event.detail), { value: value })
       );
     },
     // filter illegal characters
-    filter(value) {
+    filter: function (value) {
       value = String(value).replace(/[^0-9.-]/g, '');
       if (this.data.integer && value.indexOf('.') !== -1) {
         value = value.split('.')[0];
@@ -114,74 +131,80 @@ VantComponent({
       return value;
     },
     // limit value range
-    format(value) {
+    format: function (value) {
       value = this.filter(value);
       // format range
       value = value === '' ? 0 : +value;
       value = Math.max(Math.min(this.data.max, value), this.data.min);
       // format decimal
-      if (isDef(this.data.decimalLength)) {
+      if (utils_1.isDef(this.data.decimalLength)) {
         value = value.toFixed(this.data.decimalLength);
       }
       return value;
     },
-    onInput(event) {
-      const { value = '' } = event.detail || {};
+    onInput: function (event) {
+      var _a = (event.detail || {}).value,
+        value = _a === void 0 ? '' : _a;
       // allow input to be empty
       if (value === '') {
         return;
       }
-      let formatted = this.filter(value);
+      var formatted = this.filter(value);
       // limit max decimal length
-      if (isDef(this.data.decimalLength) && formatted.indexOf('.') !== -1) {
-        const pair = formatted.split('.');
-        formatted = `${pair[0]}.${pair[1].slice(0, this.data.decimalLength)}`;
+      if (
+        utils_1.isDef(this.data.decimalLength) &&
+        formatted.indexOf('.') !== -1
+      ) {
+        var pair = formatted.split('.');
+        formatted = pair[0] + '.' + pair[1].slice(0, this.data.decimalLength);
       }
       this.emitChange(formatted);
     },
-    emitChange(value) {
+    emitChange: function (value) {
       if (!this.data.asyncChange) {
         this.setData({ currentValue: value });
       }
       this.$emit('change', value);
     },
-    onChange() {
-      const { type } = this;
+    onChange: function () {
+      var type = this.type;
       if (this.isDisabled(type)) {
         this.$emit('overlimit', type);
         return;
       }
-      const diff = type === 'minus' ? -this.data.step : +this.data.step;
-      const value = this.format(add(+this.data.currentValue, diff));
+      var diff = type === 'minus' ? -this.data.step : +this.data.step;
+      var value = this.format(add(+this.data.currentValue, diff));
       this.emitChange(value);
       this.$emit(type);
     },
-    longPressStep() {
-      this.longPressTimer = setTimeout(() => {
-        this.onChange();
-        this.longPressStep();
+    longPressStep: function () {
+      var _this = this;
+      this.longPressTimer = setTimeout(function () {
+        _this.onChange();
+        _this.longPressStep();
       }, LONG_PRESS_INTERVAL);
     },
-    onTap(event) {
-      const { type } = event.currentTarget.dataset;
+    onTap: function (event) {
+      var type = event.currentTarget.dataset.type;
       this.type = type;
       this.onChange();
     },
-    onTouchStart(event) {
+    onTouchStart: function (event) {
+      var _this = this;
       if (!this.data.longPress) {
         return;
       }
       clearTimeout(this.longPressTimer);
-      const { type } = event.currentTarget.dataset;
+      var type = event.currentTarget.dataset.type;
       this.type = type;
       this.isLongPress = false;
-      this.longPressTimer = setTimeout(() => {
-        this.isLongPress = true;
-        this.onChange();
-        this.longPressStep();
+      this.longPressTimer = setTimeout(function () {
+        _this.isLongPress = true;
+        _this.onChange();
+        _this.longPressStep();
       }, LONG_PRESS_START_TIME);
     },
-    onTouchEnd() {
+    onTouchEnd: function () {
       if (!this.data.longPress) {
         return;
       }

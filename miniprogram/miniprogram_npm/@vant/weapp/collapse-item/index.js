@@ -1,5 +1,7 @@
-import { VantComponent } from '../common/component';
-VantComponent({
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var component_1 = require('../common/component');
+component_1.VantComponent({
   classes: ['title-class', 'content-class'],
   relation: {
     name: 'collapse',
@@ -26,40 +28,48 @@ VantComponent({
   data: {
     expanded: false,
   },
-  created() {
+  created: function () {
     this.animation = wx.createAnimation({
       duration: 0,
       timingFunction: 'ease-in-out',
     });
   },
-  mounted() {
+  mounted: function () {
     this.updateExpanded();
     this.inited = true;
   },
   methods: {
-    updateExpanded() {
+    updateExpanded: function () {
       if (!this.parent) {
         return Promise.resolve();
       }
-      const { value, accordion } = this.parent.data;
-      const { children = [] } = this.parent;
-      const { name } = this.data;
-      const index = children.indexOf(this);
-      const currentName = name == null ? index : name;
-      const expanded = accordion
+      var _a = this.parent.data,
+        value = _a.value,
+        accordion = _a.accordion;
+      var _b = this.parent.children,
+        children = _b === void 0 ? [] : _b;
+      var name = this.data.name;
+      var index = children.indexOf(this);
+      var currentName = name == null ? index : name;
+      var expanded = accordion
         ? value === currentName
-        : (value || []).some((name) => name === currentName);
+        : (value || []).some(function (name) {
+            return name === currentName;
+          });
       if (expanded !== this.data.expanded) {
         this.updateStyle(expanded);
       }
-      this.setData({ index, expanded });
+      this.setData({ index: index, expanded: expanded });
     },
-    updateStyle(expanded) {
-      const { inited } = this;
+    updateStyle: function (expanded) {
+      var _this = this;
+      var inited = this.inited;
       this.getRect('.van-collapse-item__content')
-        .then((rect) => rect.height)
-        .then((height) => {
-          const { animation } = this;
+        .then(function (rect) {
+          return rect.height;
+        })
+        .then(function (height) {
+          var animation = _this.animation;
           if (expanded) {
             animation
               .height(height)
@@ -69,7 +79,7 @@ VantComponent({
               })
               .height('auto')
               .step();
-            this.setData({
+            _this.setData({
               animation: animation.export(),
             });
             return;
@@ -77,18 +87,20 @@ VantComponent({
           animation.height(height).top(0).step({ duration: 1 }).height(0).step({
             duration: 300,
           });
-          this.setData({
+          _this.setData({
             animation: animation.export(),
           });
         });
     },
-    onClick() {
+    onClick: function () {
       if (this.data.disabled) {
         return;
       }
-      const { name, expanded } = this.data;
-      const index = this.parent.children.indexOf(this);
-      const currentName = name == null ? index : name;
+      var _a = this.data,
+        name = _a.name,
+        expanded = _a.expanded;
+      var index = this.parent.children.indexOf(this);
+      var currentName = name == null ? index : name;
       this.parent.switch(currentName, !expanded);
     },
   },

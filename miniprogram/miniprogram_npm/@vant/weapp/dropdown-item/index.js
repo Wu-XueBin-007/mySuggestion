@@ -1,11 +1,13 @@
-import { VantComponent } from '../common/component';
-VantComponent({
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var component_1 = require('../common/component');
+component_1.VantComponent({
   field: true,
   relation: {
     name: 'dropdown-menu',
     type: 'ancestor',
     current: 'dropdown-item',
-    linked() {
+    linked: function () {
       this.updateDataFromParent();
     },
   },
@@ -37,55 +39,59 @@ VantComponent({
     displayTitle: '',
   },
   methods: {
-    rerender() {
-      wx.nextTick(() => {
-        this.parent && this.parent.updateItemListData();
+    rerender: function () {
+      var _this = this;
+      wx.nextTick(function () {
+        _this.parent && _this.parent.updateItemListData();
       });
     },
-    updateDataFromParent() {
+    updateDataFromParent: function () {
       if (this.parent) {
-        const {
-          overlay,
-          duration,
-          activeColor,
-          closeOnClickOverlay,
-          direction,
-        } = this.parent.data;
+        var _a = this.parent.data,
+          overlay = _a.overlay,
+          duration = _a.duration,
+          activeColor = _a.activeColor,
+          closeOnClickOverlay = _a.closeOnClickOverlay,
+          direction = _a.direction;
         this.setData({
-          overlay,
-          duration,
-          activeColor,
-          closeOnClickOverlay,
-          direction,
+          overlay: overlay,
+          duration: duration,
+          activeColor: activeColor,
+          closeOnClickOverlay: closeOnClickOverlay,
+          direction: direction,
         });
       }
     },
-    onOpen() {
+    onOpen: function () {
       this.$emit('open');
     },
-    onOpened() {
+    onOpened: function () {
       this.$emit('opened');
     },
-    onClose() {
+    onClose: function () {
       this.$emit('close');
     },
-    onClosed() {
+    onClosed: function () {
       this.$emit('closed');
       this.setData({ showWrapper: false });
     },
-    onOptionTap(event) {
-      const { option } = event.currentTarget.dataset;
-      const { value } = option;
-      const shouldEmitChange = this.data.value !== value;
-      this.setData({ showPopup: false, value });
+    onOptionTap: function (event) {
+      var option = event.currentTarget.dataset.option;
+      var value = option.value;
+      var shouldEmitChange = this.data.value !== value;
+      this.setData({ showPopup: false, value: value });
       this.$emit('close');
       this.rerender();
       if (shouldEmitChange) {
         this.$emit('change', value);
       }
     },
-    toggle(show, options = {}) {
-      const { showPopup } = this.data;
+    toggle: function (show, options) {
+      var _this = this;
+      if (options === void 0) {
+        options = {};
+      }
+      var showPopup = this.data.showPopup;
       if (typeof show !== 'boolean') {
         show = !showPopup;
       }
@@ -97,9 +103,9 @@ VantComponent({
         showPopup: show,
       });
       if (show) {
-        this.parent.getChildWrapperStyle().then((wrapperStyle) => {
-          this.setData({ wrapperStyle, showWrapper: true });
-          this.rerender();
+        this.parent.getChildWrapperStyle().then(function (wrapperStyle) {
+          _this.setData({ wrapperStyle: wrapperStyle, showWrapper: true });
+          _this.rerender();
         });
       } else {
         this.rerender();

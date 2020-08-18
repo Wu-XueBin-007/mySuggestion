@@ -1,8 +1,10 @@
-import { VantComponent } from '../common/component';
-import { touch } from '../mixins/touch';
-import { canIUseModel } from '../common/version';
-VantComponent({
-  mixins: [touch],
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var component_1 = require('../common/component');
+var touch_1 = require('../mixins/touch');
+var version_1 = require('../common/version');
+component_1.VantComponent({
+  mixins: [touch_1.touch],
   props: {
     disabled: Boolean,
     useButtonSlot: Boolean,
@@ -23,7 +25,7 @@ VantComponent({
     value: {
       type: Number,
       value: 0,
-      observer(val) {
+      observer: function (val) {
         if (val !== this.value) {
           this.updateValue(val);
         }
@@ -34,72 +36,81 @@ VantComponent({
       value: 2,
     },
   },
-  created() {
+  created: function () {
     this.updateValue(this.data.value);
   },
   methods: {
-    onTouchStart(event) {
+    onTouchStart: function (event) {
       if (this.data.disabled) return;
       this.touchStart(event);
       this.startValue = this.format(this.value);
       this.dragStatus = 'start';
     },
-    onTouchMove(event) {
+    onTouchMove: function (event) {
+      var _this = this;
       if (this.data.disabled) return;
       if (this.dragStatus === 'start') {
         this.$emit('drag-start');
       }
       this.touchMove(event);
       this.dragStatus = 'draging';
-      this.getRect('.van-slider').then((rect) => {
-        const diff = (this.deltaX / rect.width) * 100;
-        this.newValue = this.startValue + diff;
-        this.updateValue(this.newValue, false, true);
+      this.getRect('.van-slider').then(function (rect) {
+        var diff = (_this.deltaX / rect.width) * 100;
+        _this.newValue = _this.startValue + diff;
+        _this.updateValue(_this.newValue, false, true);
       });
     },
-    onTouchEnd() {
+    onTouchEnd: function () {
       if (this.data.disabled) return;
       if (this.dragStatus === 'draging') {
         this.updateValue(this.newValue, true);
         this.$emit('drag-end');
       }
     },
-    onClick(event) {
+    onClick: function (event) {
+      var _this = this;
       if (this.data.disabled) return;
-      const { min } = this.data;
-      this.getRect('.van-slider').then((rect) => {
-        const value =
-          ((event.detail.x - rect.left) / rect.width) * this.getRange() + min;
-        this.updateValue(value, true);
+      var min = this.data.min;
+      this.getRect('.van-slider').then(function (rect) {
+        var value =
+          ((event.detail.x - rect.left) / rect.width) * _this.getRange() + min;
+        _this.updateValue(value, true);
       });
     },
-    updateValue(value, end, drag) {
+    updateValue: function (value, end, drag) {
       value = this.format(value);
-      const { min } = this.data;
-      const width = `${((value - min) * 100) / this.getRange()}%`;
+      var min = this.data.min;
+      var width = ((value - min) * 100) / this.getRange() + '%';
       this.value = value;
       this.setData({
-        barStyle: `
-          width: ${width};
-          ${drag ? 'transition: none;' : ''}
-        `,
+        barStyle:
+          '\n          width: ' +
+          width +
+          ';\n          ' +
+          (drag ? 'transition: none;' : '') +
+          '\n        ',
       });
       if (drag) {
-        this.$emit('drag', { value });
+        this.$emit('drag', { value: value });
       }
       if (end) {
         this.$emit('change', value);
       }
-      if ((drag || end) && canIUseModel()) {
-        this.setData({ value });
+      if ((drag || end) && version_1.canIUseModel()) {
+        this.setData({ value: value });
       }
     },
-    getRange() {
-      const { max, min } = this.data;
+    getRange: function () {
+      var _a = this.data,
+        max = _a.max,
+        min = _a.min;
       return max - min;
     },
-    format(value) {
-      const { max, min, step } = this.data;
+    format: function (value) {
+      var _a = this.data,
+        max = _a.max,
+        min = _a.min,
+        step = _a.step;
       return Math.round(Math.max(min, Math.min(value, max)) / step) * step;
     },
   },

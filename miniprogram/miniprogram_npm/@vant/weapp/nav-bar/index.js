@@ -1,6 +1,8 @@
-import { VantComponent } from '../common/component';
-import { getSystemInfoSync } from '../common/utils';
-VantComponent({
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var component_1 = require('../common/component');
+var utils_1 = require('../common/utils');
+component_1.VantComponent({
   classes: ['title-class'],
   props: {
     title: String,
@@ -34,34 +36,38 @@ VantComponent({
     height: 44,
     baseStyle: '',
   },
-  created() {
-    const { statusBarHeight } = getSystemInfoSync();
-    const { safeAreaInsetTop, zIndex } = this.data;
-    const paddingTop = safeAreaInsetTop ? statusBarHeight : 0;
-    const baseStyle = `z-index: ${zIndex};padding-top: ${paddingTop}px;`;
+  created: function () {
+    var statusBarHeight = utils_1.getSystemInfoSync().statusBarHeight;
+    var _a = this.data,
+      safeAreaInsetTop = _a.safeAreaInsetTop,
+      zIndex = _a.zIndex;
+    var paddingTop = safeAreaInsetTop ? statusBarHeight : 0;
+    var baseStyle =
+      'z-index: ' + zIndex + ';padding-top: ' + paddingTop + 'px;';
     this.setData({
-      statusBarHeight,
+      statusBarHeight: statusBarHeight,
       height: 44 + statusBarHeight,
-      baseStyle,
+      baseStyle: baseStyle,
     });
   },
-  mounted() {
+  mounted: function () {
     this.setHeight();
   },
   methods: {
-    onClickLeft() {
+    onClickLeft: function () {
       this.$emit('click-left');
     },
-    onClickRight() {
+    onClickRight: function () {
       this.$emit('click-right');
     },
-    setHeight() {
+    setHeight: function () {
+      var _this = this;
       if (!this.data.fixed || !this.data.placeholder) {
         return;
       }
-      wx.nextTick(() => {
-        this.getRect('.van-nav-bar').then((res) => {
-          this.setData({ height: res.height });
+      wx.nextTick(function () {
+        _this.getRect('.van-nav-bar').then(function (res) {
+          _this.setData({ height: res.height });
         });
       });
     },

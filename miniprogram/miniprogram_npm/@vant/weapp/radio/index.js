@@ -1,5 +1,7 @@
-import { VantComponent } from '../common/component';
-VantComponent({
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var component_1 = require('../common/component');
+component_1.VantComponent({
   field: true,
   relation: {
     name: 'radio-group',
@@ -28,18 +30,21 @@ VantComponent({
     },
   },
   methods: {
-    emitChange(value) {
-      const instance = this.parent || this;
+    emitChange: function (value) {
+      var instance = this.parent || this;
       instance.$emit('input', value);
       instance.$emit('change', value);
     },
-    onChange() {
+    onChange: function () {
       if (!this.data.disabled) {
         this.emitChange(this.data.name);
       }
     },
-    onClickLabel() {
-      const { disabled, labelDisabled, name } = this.data;
+    onClickLabel: function () {
+      var _a = this.data,
+        disabled = _a.disabled,
+        labelDisabled = _a.labelDisabled,
+        name = _a.name;
       if (!disabled && !labelDisabled) {
         this.emitChange(name);
       }

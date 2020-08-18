@@ -1,12 +1,29 @@
-import { VantComponent } from '../common/component';
-import { commonProps, inputProps, textareaProps } from './props';
-VantComponent({
+'use strict';
+var __assign =
+  (this && this.__assign) ||
+  function () {
+    __assign =
+      Object.assign ||
+      function (t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+          s = arguments[i];
+          for (var p in s)
+            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+      };
+    return __assign.apply(this, arguments);
+  };
+Object.defineProperty(exports, '__esModule', { value: true });
+var component_1 = require('../common/component');
+var props_1 = require('./props');
+component_1.VantComponent({
   field: true,
   classes: ['input-class', 'right-icon-class', 'label-class'],
-  props: Object.assign(
-    Object.assign(
-      Object.assign(Object.assign({}, commonProps), inputProps),
-      textareaProps
+  props: __assign(
+    __assign(
+      __assign(__assign({}, props_1.commonProps), props_1.inputProps),
+      props_1.textareaProps
     ),
     {
       size: String,
@@ -50,46 +67,49 @@ VantComponent({
     innerValue: '',
     showClear: false,
   },
-  created() {
+  created: function () {
     this.value = this.data.value;
     this.setData({ innerValue: this.value });
   },
   methods: {
-    onInput(event) {
-      const { value = '' } = event.detail || {};
+    onInput: function (event) {
+      var _a = (event.detail || {}).value,
+        value = _a === void 0 ? '' : _a;
       this.value = value;
       this.setShowClear();
       this.emitChange();
     },
-    onFocus(event) {
+    onFocus: function (event) {
       this.focused = true;
       this.setShowClear();
       this.$emit('focus', event.detail);
     },
-    onBlur(event) {
+    onBlur: function (event) {
       this.focused = false;
       this.setShowClear();
       this.$emit('blur', event.detail);
     },
-    onClickIcon() {
+    onClickIcon: function () {
       this.$emit('click-icon');
     },
-    onClear() {
+    onClear: function () {
+      var _this = this;
       this.setData({ innerValue: '' });
       this.value = '';
       this.setShowClear();
-      wx.nextTick(() => {
-        this.emitChange();
-        this.$emit('clear', '');
+      wx.nextTick(function () {
+        _this.emitChange();
+        _this.$emit('clear', '');
       });
     },
-    onConfirm(event) {
-      const { value = '' } = event.detail || {};
+    onConfirm: function (event) {
+      var _a = (event.detail || {}).value,
+        value = _a === void 0 ? '' : _a;
       this.value = value;
       this.setShowClear();
       this.$emit('confirm', value);
     },
-    setValue(value) {
+    setValue: function (value) {
       this.value = value;
       this.setShowClear();
       if (value === '') {
@@ -97,26 +117,31 @@ VantComponent({
       }
       this.emitChange();
     },
-    onLineChange(event) {
+    onLineChange: function (event) {
       this.$emit('linechange', event.detail);
     },
-    onKeyboardHeightChange(event) {
+    onKeyboardHeightChange: function (event) {
       this.$emit('keyboardheightchange', event.detail);
     },
-    emitChange() {
+    emitChange: function () {
+      var _this = this;
       this.setData({ value: this.value });
-      wx.nextTick(() => {
-        this.$emit('input', this.value);
-        this.$emit('change', this.value);
+      wx.nextTick(function () {
+        _this.$emit('input', _this.value);
+        _this.$emit('change', _this.value);
       });
     },
-    setShowClear() {
-      const { clearable, readonly } = this.data;
-      const { focused, value } = this;
+    setShowClear: function () {
+      var _a = this.data,
+        clearable = _a.clearable,
+        readonly = _a.readonly;
+      var _b = this,
+        focused = _b.focused,
+        value = _b.value;
       this.setData({
         showClear: !!clearable && !!focused && !!value && !readonly,
       });
     },
-    noop() {},
+    noop: function () {},
   },
 });

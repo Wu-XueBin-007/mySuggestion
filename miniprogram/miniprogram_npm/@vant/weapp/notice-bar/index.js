@@ -1,12 +1,15 @@
-import { VantComponent } from '../common/component';
-VantComponent({
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+var component_1 = require('../common/component');
+component_1.VantComponent({
   props: {
     text: {
       type: String,
       value: '',
-      observer() {
-        wx.nextTick(() => {
-          this.init();
+      observer: function () {
+        var _this = this;
+        wx.nextTick(function () {
+          _this.init();
         });
       },
     },
@@ -29,9 +32,10 @@ VantComponent({
     speed: {
       type: Number,
       value: 50,
-      observer() {
-        wx.nextTick(() => {
-          this.init();
+      observer: function () {
+        var _this = this;
+        wx.nextTick(function () {
+          _this.init();
         });
       },
     },
@@ -51,22 +55,24 @@ VantComponent({
   data: {
     show: true,
   },
-  created() {
+  created: function () {
     this.resetAnimation = wx.createAnimation({
       duration: 0,
       timingFunction: 'linear',
     });
   },
-  destroyed() {
+  destroyed: function () {
     this.timer && clearTimeout(this.timer);
   },
   methods: {
-    init() {
+    init: function () {
+      var _this = this;
       Promise.all([
         this.getRect('.van-notice-bar__content'),
         this.getRect('.van-notice-bar__wrap'),
-      ]).then((rects) => {
-        const [contentRect, wrapRect] = rects;
+      ]).then(function (rects) {
+        var contentRect = rects[0],
+          wrapRect = rects[1];
         if (
           contentRect == null ||
           wrapRect == null ||
@@ -75,22 +81,26 @@ VantComponent({
         ) {
           return;
         }
-        const { speed, scrollable, delay } = this.data;
+        var _a = _this.data,
+          speed = _a.speed,
+          scrollable = _a.scrollable,
+          delay = _a.delay;
         if (scrollable && wrapRect.width < contentRect.width) {
-          const duration = (contentRect.width / speed) * 1000;
-          this.wrapWidth = wrapRect.width;
-          this.contentWidth = contentRect.width;
-          this.duration = duration;
-          this.animation = wx.createAnimation({
-            duration,
+          var duration = (contentRect.width / speed) * 1000;
+          _this.wrapWidth = wrapRect.width;
+          _this.contentWidth = contentRect.width;
+          _this.duration = duration;
+          _this.animation = wx.createAnimation({
+            duration: duration,
             timingFunction: 'linear',
-            delay,
+            delay: delay,
           });
-          this.scroll();
+          _this.scroll();
         }
       });
     },
-    scroll() {
+    scroll: function () {
+      var _this = this;
       this.timer && clearTimeout(this.timer);
       this.timer = null;
       this.setData({
@@ -99,19 +109,19 @@ VantComponent({
           .step()
           .export(),
       });
-      setTimeout(() => {
-        this.setData({
-          animationData: this.animation
-            .translateX(-this.contentWidth)
+      setTimeout(function () {
+        _this.setData({
+          animationData: _this.animation
+            .translateX(-_this.contentWidth)
             .step()
             .export(),
         });
       }, 20);
-      this.timer = setTimeout(() => {
-        this.scroll();
+      this.timer = setTimeout(function () {
+        _this.scroll();
       }, this.duration);
     },
-    onClickIcon(event) {
+    onClickIcon: function (event) {
       if (this.data.mode === 'closeable') {
         this.timer && clearTimeout(this.timer);
         this.timer = null;
@@ -119,7 +129,7 @@ VantComponent({
         this.$emit('close', event.detail);
       }
     },
-    onClick(event) {
+    onClick: function (event) {
       this.$emit('click', event);
     },
   },

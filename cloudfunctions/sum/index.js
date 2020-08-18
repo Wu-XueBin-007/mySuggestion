@@ -5,7 +5,6 @@ cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV
 })
 exports.main = (event, context) => {
-  debugger
   let { userInfo, a, b } = event
   let { OPENID, APPID } = cloud.getWXContext() // 这里获取到的 openId 和 appId 是可信的
   let sums = a + b

@@ -15,7 +15,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    debugger
     if (options.scene){
       const scene = decodeURIComponent(options.scene)
       let tempcode = scene.match(/thecode=(.*)/)[1]

@@ -15,6 +15,11 @@
     <button wx:if="{{item.codePageId}}" size="mini" catchtap="onCheckCodePage" data-codePage="{{item.codePageId}}"  style="margin-left: 10px">查看海报</button>
     <button wx:if="{{!item.codePageId}}"  size="mini" catchtap="onCheckCodePage" data-code="{{item.suggestionCode}}"  data-id="{{item._id}}" style="margin-left: 10px">生成海报</button>
     </view>
+    <view class="view-item invite-code">
+      <text>订阅信息：</text>
+    <button wx:if="{{!item.isSubscribe}}" size="mini" bindtap="onSubscribeMessage" data-boxindex ="{{index}}" data-boxid="{{item._id}}"  style="margin-left: 10px">订阅</button>
+    <button  wx:if="{{item.isSubscribe}}"  size="mini"  style="margin-left: 10px">已订阅</button>
+    </view>
 </view>
   <view class="item-image">
   <van-image width="60"  height="60" src="{{item.fileList[0].url}}" />

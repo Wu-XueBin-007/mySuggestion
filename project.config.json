@@ -1,152 +1,165 @@
 {
-	"miniprogramRoot": "miniprogram/",
-	"cloudfunctionRoot": "cloudfunctions/",
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"postcss": true,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"nodeModules": true,
-		"autoAudits": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		}
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.11.1",
-	"appid": "wxaa2a6a96b2869fd6",
-	"projectname": "20200620",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"scripts": {
-		"beforeCompile": "sass-to-wxss",
-		"beforePreview": "",
-		"beforeUpload": ""
-	},
-	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "pages/about/about",
-					"pathName": "pages/about/about",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/addOilPage/addOilPage",
-					"pathName": "pages/addOilPage/addOilPage",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/gauge/index",
-					"pathName": "pages/gauge/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/gaugePanel/gaugePanel",
-					"pathName": "pages/gaugePanel/gaugePanel",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/historys/historys",
-					"pathName": "pages/historys/historys",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/suggestion/suggestion",
-					"pathName": "pages/suggestion/suggestion",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/personal/personal",
-					"pathName": "pages/personal/personal",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/suggestionGuide/suggestionGuide",
-					"pathName": "pages/suggestionGuide/suggestionGuide",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/addSuggestion/addSuggestion",
-					"pathName": "pages/addSuggestion/addSuggestion",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/suggestionGuide/suggestionGuide",
-					"query": "scene=thecode%3DoJNLH7",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/testPage/testPage",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/testPage/testPage",
-					"pathName": "pages/testPage/testPage",
-					"scene": null
-				}
-			]
-		}
-	}
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": false,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": false,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": []
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.11.1",
+  "appid": "wxaa2a6a96b2869fd6",
+  "projectname": "20200620",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "scripts": {
+    "beforeCompile": "sass-to-wxss",
+    "beforePreview": "",
+    "beforeUpload": ""
+  },
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "plugin": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "currentL": -1,
+      "list": []
+    },
+    "gamePlugin": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": -1,
+      "list": [
+        {
+          "id": -1,
+          "name": "pages/about/about",
+          "pathName": "pages/about/about",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/addOilPage/addOilPage",
+          "pathName": "pages/addOilPage/addOilPage",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/gauge/index",
+          "pathName": "pages/gauge/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/gaugePanel/gaugePanel",
+          "pathName": "pages/gaugePanel/gaugePanel",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/historys/historys",
+          "pathName": "pages/historys/historys",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/suggestion/suggestion",
+          "pathName": "pages/suggestion/suggestion",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/suggestionGuide/suggestionGuide",
+          "pathName": "pages/suggestionGuide/suggestionGuide",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/addSuggestion/addSuggestion",
+          "pathName": "pages/addSuggestion/addSuggestion",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/index/index",
+          "pathName": "pages/suggestionGuide/suggestionGuide",
+          "query": "scene=thecode%3DoJNLH7",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/index/index",
+          "pathName": "pages/testPage/testPage",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/testPage/testPage",
+          "pathName": "pages/testPage/testPage",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

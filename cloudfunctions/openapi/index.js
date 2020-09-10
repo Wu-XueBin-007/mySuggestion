@@ -48,7 +48,8 @@ async function sendSubscribeMessage(event) {
   const { OPENID } = cloud.getWXContext()
 
   const { templateId, boxId  } = event
-
+  const date =new Date()
+  let dates = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
   const sendResult = await cloud.openapi.subscribeMessage.send({
     touser: OPENID,
     templateId,
@@ -60,7 +61,7 @@ async function sendSubscribeMessage(event) {
         value: '星河意见箱',
       },
       date2: {
-        value: '2020.6.3'
+        value:dates
       },
       thing3: {
         value: '您的意见箱有新意见到达，请查收！',

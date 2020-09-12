@@ -1,6 +1,0 @@
-<!--components/echart-line/echart-line.wxml-->
- <!--index.wxml-->
-<view class="echart-line-page">
-<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ec}}"></ec-canvas>
-</view>
-

@@ -53,7 +53,7 @@ async function sendSubscribeMessage(event) {
   const sendResult = await cloud.openapi.subscribeMessage.send({
     touser: OPENID,
     templateId,
-    miniprogram_state: 'developer',
+    miniprogram_state: 'formal',
     page: 'pages/suggestionComment/suggestionComment?id='+ boxId,
     // 此处字段应修改为所申请模板所要求的字段
     data: {

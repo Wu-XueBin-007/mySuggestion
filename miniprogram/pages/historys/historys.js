@@ -115,7 +115,8 @@ onLoad: function (options) {
     wx.getSetting({
       withSubscriptions: true,
       success: function(res){
-        if(res.subscriptionsSetting.mainSwitch &&res.subscriptionsSetting.itemSettings[templateId] === 'accept'){
+        let setting = res.subscriptionsSetting.itemSettings
+        if(res.subscriptionsSetting.mainSwitch &&setting&&setting[templateId] === 'accept'){
           Dialog.confirm({
             title: '提示',
             message: '确认订阅吗？',

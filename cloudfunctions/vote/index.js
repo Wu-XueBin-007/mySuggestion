@@ -16,6 +16,9 @@ exports.main = (event, context) => {
     case 'countVotes': {//查询投票数量
       return countVotes(event)
     }
+    case 'getVoteStatus': {//查询是否投票
+      return getVoteStatus(event)
+    }
     default: {
       return
     }
@@ -35,6 +38,13 @@ async function removeVote(event){
     _openid: OPENID,
     suggestionId:event.suggestionId
   }).remove()
+}
+async function getVoteStatus(event){
+  const {OPENID} = cloud.getWXContext()
+  return await db.collection('votes').where({
+    _openid: OPENID,
+    suggestionId:event.suggestionId
+  })
 }
 
 async function countVotes(event){

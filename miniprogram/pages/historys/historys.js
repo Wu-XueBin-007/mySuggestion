@@ -108,31 +108,91 @@ onLoad: function (options) {
     }
   },
   onSubscribeMessage(e){
-    const {templateId} = this.data
+    const {templateId, historys} = this.data
     const that = this
-    const {boxid} = e.currentTarget.dataset
+    const {boxid,boxindex} = e.currentTarget.dataset
     // const templateId = this.getSubscribeMessageTemplate(boxId)
-    wx.requestSubscribeMessage({
-      tmplIds: [templateId],
-      success: (res) => {
-        if (res[templateId] === 'accept') {
-          setTimeout(()=>{
-            that.sendMsg(templateId,boxid)
-          },2000)
-          this.setData({
-            requestSubscribeMessageResult: '成功',
+    wx.getSetting({
+      withSubscriptions: true,
+      success: function(res){
+        let setting = res.subscriptionsSetting.itemSettings
+        if(res.subscriptionsSetting.mainSwitch &&setting&&setting[templateId] === 'accept'){
+          Dialog.confirm({
+            title: '提示',
+            message: '确认订阅吗？',
           })
-        } else {
-          this.setData({
-            requestSubscribeMessageResult: `失败（${res[templateId]}）`,
+            .then(() => {
+              // on confirm
+             that.subscribleMessage(templateId,boxid)
+              db.collection('boxes').doc(boxid).update({
+                data:{
+                  isSubscribe: true
+                },
+                success:function(res){
+                  historys[boxindex].isSubscribe =true
+                  that.setData({
+                    historys
+                  })
+                }
+              })
+        
+            })
+        }else{
+          wx.requestSubscribeMessage({
+            tmplIds: [templateId],
+            success: (res) => {
+              if (res[templateId] === 'accept') {
+                that.subscribleMessage(templateId,boxid)
+                db.collection('boxes').doc(boxid).update({
+                  data:{
+                    isSubscribe: true
+                  },
+                  success:function(res){
+                    historys[boxindex].isSubscribe =true
+                    that.setData({
+                      historys
+                    })
+                  }
+                })
+                that.setData({
+                  requestSubscribeMessageResult: '成功',
+                })
+              } else {
+             
+                  console.log( `失败（${res[templateId]}）`)
+              
+              }
+            },
+            fail: (err) => {
+              debugger
+           
+                console.log(`失败（${JSON.stringify(err)}）`)
+           
+            },
           })
         }
+      }
+    })
+    
+  },
+  subscribleMessage(templateId,boxid){
+    const that = this
+    db.collection('suggestions').where({
+      boxId:boxid
+    }).watch({
+      onChange: function(snapshot) {
+        console.log(snapshot)
+      const {docChanges} = snapshot
+      docChanges.forEach(item=>{
+          if(item.dataType === 'add'){
+            that.sendMsg(templateId,boxid)
+          }
+      })
       },
-      fail: (err) => {
-        this.setData({
-          requestSubscribeMessageResult: `失败（${JSON.stringify(err)}）`,
-        })
-      },
+      onError: function(err) {
+        console.error('the watch closed because of error', err)
+      }
+
     })
   },
   sendMsg(templateId,boxId){

@@ -1,14 +1,17 @@
 <!--index.wxml-->
 <view class="container">
+  
 <view class="promise">
-
+  <view class="header">
+  <image class="bg_ware" src="../../assets/bg_wave.gif"></image>
+</view>
 <text class="promise-title">以客户为中心，以奋斗者为本，以创新为动力</text>
 <view animation="{{animal}}"><text class="promise-title" >主动 务实 高效 精准 创新</text></view>
 </view>
 <view class="function-btn">
 
   <van-field size="large"
-    title-width="100px"
+    title-width="125px"
     value="{{invitedCode}}"
     center
     clearable

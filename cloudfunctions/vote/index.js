@@ -44,7 +44,7 @@ async function getVoteStatus(event){
   return await db.collection('votes').where({
     _openid: OPENID,
     suggestionId:event.suggestionId
-  })
+  }).get()
 }
 
 async function countVotes(event){

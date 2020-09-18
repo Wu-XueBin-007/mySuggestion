@@ -1,12 +1,15 @@
-# 云开发 quickstart
 
-这是云开发的快速启动指引，其中演示了如何上手使用云开发的三大基础能力：
+# 星河意见箱
+ 
+  一款基于微信小程序云开发平台，开发用于个人或集体的意见收集小程序
+## 效果图
+  ![Image text](./pics/首页.png)
 
-- 数据库：一个既可在小程序前端操作，也能在云函数中读写的 JSON 文档型数据库
-- 文件存储：在小程序前端直接上传/下载云端文件，在云开发控制台可视化管理
-- 云函数：在云端运行的代码，微信私有协议天然鉴权，开发者只需编写业务逻辑代码
+## 体验码
+微信扫描以下体验二维码
+## 安装部署
 
-## 参考文档
+参考[deployment](./deployment)部署文件
+## License
 
-- [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
-
+该项目是 [MIT licensed](./LICENSE).

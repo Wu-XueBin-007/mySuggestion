@@ -38,3 +38,27 @@ export const uuid =function () {
   var uuid = s.join("");
   return uuid;
 }
+
+// 空对象
+export function isEmptyObject (obj) {
+  if (!obj) {
+      return true
+  }
+  for (const prop in obj) {
+      if (obj.hasOwnProperty(prop)) {
+          return false
+      }
+  }
+  return true
+}
+
+//防抖函数
+export function debounce (fn, delay) {
+  let timer = null
+  return function (...args) {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+          fn.apply(this, args)
+      }, delay)
+  }
+}

@@ -7,6 +7,7 @@
     "pages/historys/historys",
     "pages/suggestion/suggestion",
     "pages/suggestionGuide/suggestionGuide",
+    "pages/suggestionDetail/suggestionDetail",
     "pages/addSuggestion/addSuggestion",
     "pages/suggestionComment/suggestionComment",
     "pages/historys/codePage/codePage"
@@ -21,6 +22,7 @@
   "tabBar": {
     "color": "#999999",
     "selectedColor": "#5063C2",
+    "borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/index/index",

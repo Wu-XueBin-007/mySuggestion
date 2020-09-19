@@ -1,14 +1,22 @@
-<!--miniprogram/pages/personal/personal.wxml-->
+<!-- miniprogram/pages/personal/personal.wxml -->
 <view class="personal-page">
-<view class="personal-head">
-<image class="personal-image" mode="aspectFill" src="{{avatarUrl}}"/>
-<button class="personal-login" plain bindgetuserinfo="onGetUserInfo" open-type="getUserInfo"><text class="personal-text">{{userName}}</text></button>
-</view>
-<view class="personal-body">
-<van-panel custom-class="personal-panel">
-<van-cell title = "创建意见箱" is-link clickable bind:click="createHistory" />
-<van-cell title = "我的意见箱" is-link clickable bind:click="getHistory" />
- <van-cell title="使用教程" is-link link-type="navigateTo" url="/pages/userBook/userBook" />
-  <van-cell title="关于" is-link link-type="navigateTo" url="/pages/about/about" />
-</van-panel></view>
+  <van-skeleton avatar-size="88px" avatar row="4" loading="{{ loading }}">
+    <view class="personal-head">
+      <image class="personal-image" mode="aspectFill" src="{{avatarUrl}}" />
+      <button class="personal-login" plain bindgetuserinfo="onGetUserInfo" open-type="getUserInfo">
+        <text class="personal-text">{{userName}}</text>
+      </button>
+    </view>
+  </van-skeleton>
+  <view class="personal-body">
+    <van-cell-group custom-class="personal-panel">
+      <van-cell title-class="cell-title" size="large" center title="创建意见箱" icon="new" is-link clickable bind:click="createHistory" />
+      <van-cell title-class="cell-title" size="large" center title="我的意见箱" icon="manager" is-link clickable bind:click="getHistory" />
+      <van-cell title-class="cell-title" size="large" center title="使用教程" icon="column" is-link link-type="navigateTo" url="/pages/userBook/userBook" />
+      <van-cell title-class="cell-title" size="large" center title="关于" icon="info" border="{{false}}" is-link link-type="navigateTo" url="/pages/about/about" />
+    </van-cell-group>
+  </view>
+  <view class="personal-footer" wx:if="{{logged}}"> 
+    <van-button type="primary" custom-style="width: 90%;color:#333333;background:#ffffff;border:0;font-size:16px;" block bind:click="loginOut">退出登录</van-button>
+  </view>
 </view>

@@ -5,8 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    version: 'Version 2.0',
+    version: 'Version 2.1',
     steps: [
+      {
+        text: '版本号  V2.1',
+        desc: '个人中心重构',
+      },
       {
         text: '版本号  V2.0',
         desc: '新增意见箱生成二维码海报功能，优化意见箱码生成规则',

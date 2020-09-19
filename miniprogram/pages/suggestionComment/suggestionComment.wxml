@@ -1,18 +1,17 @@
-<!--miniprogram/pages/suggestionComment/suggestionComment.wxml-->
+<!-- miniprogram/pages/suggestionComment/suggestionComment.wxml -->
 <view>
-<van-cell size='large' title="意见总数"  value="{{count}}"/>
-<view wx:for="{{commentList}}" wx:key="index">
-<van-panel  custom-class="comment-panel" >
-<view class="comment-header" slot="header">
-<text class="comment-header-left">意见：{{index+1}}</text>
-<text class="comment-header-right">{{item.createDate}}</text>
-</view>
-<van-divider hairline custom-style="margin: 1px 20px;"  />
-<view class="item-view">内容: {{item.boxComment}}</view>
-<block wx:for="{{item.fileList}}" wx:key="theIndex" wx:for-item="theItem" wx:for-index="theIndex">
-<van-image custom-class="image-item" width="50" height="50" src="{{theItem.url}}" data-index="{{index}}" data-imageindex="{{theIndex}}" bind:click="clickImage" />
-</block>
-  
-</van-panel>
-</view>
+    <van-cell size='large' title="意见总数" value="{{count}}" />
+    <view wx:for="{{commentList}}" wx:key="index">
+        <van-panel custom-class="comment-panel">
+            <view class="comment-header" slot="header">
+                <text class="comment-header-left">意见：{{index+1}}</text>
+                <text class="comment-header-right">{{item.createDate}}</text>
+            </view>
+            <van-divider hairline custom-style="margin: 1px 20px;" />
+            <view class="item-view">内容: {{item.boxComment}}</view>
+            <block wx:for="{{item.fileList}}" wx:key="theIndex" wx:for-item="theItem" wx:for-index="theIndex">
+                <van-image custom-class="image-item" width="50" height="50" src="{{theItem.url}}" data-index="{{index}}" data-imageindex="{{theIndex}}" bind:click="clickImage" />
+            </block>
+        </van-panel>
+    </view>
 </view>

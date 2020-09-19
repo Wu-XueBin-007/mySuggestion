@@ -19,9 +19,6 @@ page {
   mix-blend-mode: screen;
   height: 120rpx;
 }
-.promise{
-
-}
 .promise-title{
   position: relative;
   

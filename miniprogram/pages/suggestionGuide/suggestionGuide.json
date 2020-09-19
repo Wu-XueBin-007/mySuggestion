@@ -2,13 +2,9 @@
   "navigationBarBackgroundColor": "#506799",
   "navigationBarTitleText": "意见箱",
   "usingComponents": {
-    "van-panel": "@vant/weapp/panel/index",
-    "van-field": "@vant/weapp/field/index",
-    "van-cell-group": "@vant/weapp/cell-group/index",
     "van-cell": "@vant/weapp/cell/index",
-    "van-image": "@vant/weapp/image/index",
-    "van-dialog": "@vant/weapp/dialog/index",
     "van-button": "@vant/weapp/button/index",
-    "van-icon": "@vant/weapp/icon/index"
+    "van-icon": "@vant/weapp/icon/index",
+    "van-card": "@vant/weapp/card/index"
   }
 }

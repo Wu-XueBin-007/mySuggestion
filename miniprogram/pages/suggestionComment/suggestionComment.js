@@ -8,8 +8,8 @@ Page({
     commentList: [],
     page: 0,
     size: 10,
-    boxId:'',
-    count:0
+    boxId: '',
+    count: 0
   },
   getComments(boxId) {
     let { size, page } = this.data
@@ -19,15 +19,17 @@ Page({
     db.collection('suggestions').aggregate()
       .match({
         boxId: boxId
-      }).count('count').end().then(res=>{
+      }).count('count').end().then(res => {
         console.log(res)
-        this.setData({
-          count: res.list[0].count
-        })
+        if (res.list && res.list.length > 0) {
+          this.setData({
+            count: res.list[0].count
+          })
+        }
       })
     db.collection('suggestions').aggregate()
       .match({
-        boxId:boxId
+        boxId: boxId
       })
       .sort({
         createDate: -1
@@ -44,11 +46,11 @@ Page({
       }
       )
   },
-  clickImage(event){
-    const { index, imageindex}= event.currentTarget.dataset
-    const { commentList} =this.data
+  clickImage(event) {
+    const { index, imageindex } = event.currentTarget.dataset
+    const { commentList } = this.data
     let tempFile = commentList[index].fileList
-    let urls = tempFile.map((item)=>{
+    let urls = tempFile.map((item) => {
       return item.url
     })
     wx.previewImage({
@@ -61,7 +63,7 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
-    if(options.id){
+    if (options.id) {
       this.setData({
         boxId: options.id
       })
@@ -80,7 +82,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
- 
+
   },
 
   /**

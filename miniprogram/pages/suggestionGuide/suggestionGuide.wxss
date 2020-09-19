@@ -1,43 +1,109 @@
 /* miniprogram/pages/suggestionGuide/suggestionGuide.wxss */
+page {
+  height: 100%;
+}
 
-.race-header{
-  padding: 10px;
-  font-size: 20px;
+.card {
+  background: #ffffff !important;
 }
-.race-home-panel{
-  margin-top: 10px;
-}
-.race-header-left{
- padding: 10px;
-}
-.race-header-right{
-  float: right;
-  font-size: 15px;
 
+.race-home-page {
+  position: relative;
+  height: 100%;
+  background-color: #fafafa;
 }
-.race-item{
-   margin:10px 10px 20px 10px;
-   line-height: 25px;
+
+.race-title {
+  font-size: 18px;
 }
-.race-item-self{
-  display: flex;
-  align-items: center;
+
+.race-description {
+  color: #888991 !important;
+  font-size: 14px !important;
 }
-.race-item-roles{
-   margin:10px 10px 5px 20px;
+
+.suggest {
+  margin-top: 20px;
+  background: #ffffff;
 }
-.race-item text{
-   font-size: 15px;
-   padding: 10px;
+
+.suggest-cell-title {
+  font-weight: bold !important;
+}
+
+.suggest-list {
   
-}
-.race-content{
- padding: 10px;
+  height: 78px;
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
-.race-footer{
-padding: 10px;
+.suggest-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid #f8f8f8;
+  box-sizing: border-box;
 }
-.suggestion-image{
-  text-align: center;
+
+.suggest-left {
+  flex: 0 0 85%;
+  max-width: 85%;
+  box-sizing: border-box;
+}
+
+.suggest-right {
+  flex: 0 0 15%;
+  max-width: 15%;
+  box-sizing: border-box;
+}
+
+.suggest-info {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.suggest-opr {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100%;
+  width: 100%;
+}
+
+.first-row {
+  height: 60%;
+  width: 100%;
+  align-items: center;
+  display: flex;
+}
+
+.first-row-item {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333333;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: calc(100% - 52px);
+}
+
+.second-row {
+  align-items: flex-start;
+  display: flex;
+  height: 40%;
+  width: 100%;
+}
+
+.second-row-date {
+  font-size: 12px;
+  color: #999999;
 }

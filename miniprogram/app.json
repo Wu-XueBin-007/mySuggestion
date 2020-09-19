@@ -7,6 +7,7 @@
     "pages/historys/historys",
     "pages/suggestion/suggestion",
     "pages/suggestionGuide/suggestionGuide",
+    "pages/suggestionDetail/suggestionDetail",
     "pages/addSuggestion/addSuggestion",
     "pages/suggestionComment/suggestionComment",
     "pages/historys/codePage/codePage"

@@ -1,22 +1,33 @@
-<!--miniprogram/pages/suggestionGuide/suggestionGuide.wxml-->
-<!--miniprogram/pages/raceHome/racehome.wxml 评委进入之后的页面-->
+<!-- miniprogram/pages/suggestionGuide/suggestionGuide.wxml -->
+<!-- miniprogram/pages/raceHome/racehome.wxml 评委进入之后的页面 -->
 <view class="race-home-page">
-<van-panel use-footer-slot custom-class="race-home-panel">
-<view class="race-header" slot="header">
-<text class="race-header-left">收集方：{{race.boxName}}</text>
-<text class="race-header-right">收集中</text>
-</view>
-<view class="race-content">
-  <view class="suggestion-image">
-  <van-image width="150" height="150" src="{{image}}" />
+  <van-card custom-class="card" title-class="race-title" price-class="race-description" price="{{race.boxComment}}" currency="" title="{{race.boxName}}" thumb="{{image}}">
+    <view slot="footer">
+      <van-button size="normal" icon="add-o" color="linear-gradient(to right, #4062db, #7892eb)" bind:click="startRace">
+        匿名提意见
+      </van-button>
+    </view>
+  </van-card>
+  <view class="suggest">
+    <van-cell title-class="suggest-cell-title" size='large' title="意见总数" value="{{count}}" />
+    <view wx:for="{{commentList}}" wx:key="{{item._id}}" class="suggest-list" hover-class="card-hove">
+      <view class="suggest-card">
+        <view class="suggest-left">
+          <view class="suggest-info">
+            <view class="first-row">
+              <view class="first-row-item">{{item.boxComment}}</view>
+            </view>
+            <view class="second-row">
+              <view class="second-row-date">{{item.createDate}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="suggest-right">
+          <view class="suggest-opr" bindtap="clickImage" data-id="{{item._id}}">
+            <van-icon name="chat" size="25" color="#5063C2" />
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
-  <view class="race-item"><text>意见箱简介:</text>
-<view class="race-item-roles">{{race.boxComment}}</view> 
 </view>
-</view>
-<view footer-class="race-footer" slot="footer">
- <van-button size="large"  color="linear-gradient(to right, #4bb0ff, #506799)" bind:click="startRace" >匿名提意见</van-button>
-</view>
-</van-panel>
-</view>
-
